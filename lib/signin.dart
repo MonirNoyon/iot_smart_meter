@@ -31,7 +31,7 @@ class _SigninState extends State<Signin> {
                 ),),
                 Container(
                   height: size.height*0.6,
-                  width: size.width*0.85,
+                  width: size.width*0.9,
                   child: Card(
                     elevation: 5,
                     child: Padding(
@@ -58,7 +58,7 @@ class _SigninState extends State<Signin> {
                               )
                             ),
                           ),
-                          TextFormField(
+                          TextField(
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: "Password",
