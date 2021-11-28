@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:iot_meter/auth/authentication.dart';
 import 'package:iot_meter/main.dart';
 
 class Signin extends StatefulWidget {
@@ -10,6 +11,9 @@ class Signin extends StatefulWidget {
 }
 
 class _SigninState extends State<Signin> {
+  String email = "";
+  String password = "";
+  String error = "";
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -57,6 +61,11 @@ class _SigninState extends State<Signin> {
                                 //style your hint if needed
                               )
                             ),
+                            onChanged: (val){
+                              setState(() {
+                                email = val;
+                              });
+                            },
                           ),
                           TextField(
                             decoration: InputDecoration(
@@ -69,11 +78,22 @@ class _SigninState extends State<Signin> {
                                 //style your hint if needed
                               )
                             ),
+                            onChanged: (val){
+                              setState(() {
+                                password = val;
+                              });
+                            },
                           ),
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text("Forgot Password ?",style: TextStyle(
                               color: Colors.blue
+                            ),),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Text(error,style: TextStyle(
+                              color: Colors.redAccent
                             ),),
                           ),
                           Container(
@@ -92,7 +112,15 @@ class _SigninState extends State<Signin> {
                               color: Colors.transparent,
                               child: InkWell(
                                 onTap: (){
-                                  Navigator.of(context).pushNamed("/dashboard");
+                                  setState(() {
+                                    if(email != "" && password !=""){
+                                      logIn(email, password);
+                                      Navigator.of(context).pushNamed("/dashboard");
+                                    }else{
+                                      error = "Enter input correctly";
+                                    }
+
+                                  });
                                 },
                                 customBorder: StadiumBorder(),
                                 splashColor: Colors.white54,
@@ -100,7 +128,9 @@ class _SigninState extends State<Signin> {
                                   width: size.width*0.65,
                                   height: 50,
                                   child: Center(
-                                    child: Text("Sign in"),
+                                    child: Text("Sign in",style: TextStyle(
+                                      color: Colors.white
+                                    ),),
                                   ),
                                 ),
                               ),

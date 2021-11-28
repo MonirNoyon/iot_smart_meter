@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:iot_meter/auth/authentication.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -9,6 +10,10 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  String email="";
+  String password = "";
+  String conf_password = "";
+  String error= "";
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -57,6 +62,11 @@ class _SignupState extends State<Signup> {
                                   //style your hint if needed
                                 )
                             ),
+                            onChanged: (mail){
+                              setState(() {
+                                email = mail;
+                              });
+                            },
                           ),
                           TextFormField(
                             decoration: InputDecoration(
@@ -69,6 +79,9 @@ class _SignupState extends State<Signup> {
                                   //style your hint if needed
                                 )
                             ),
+                            onChanged: (pass){
+                              password = pass;
+                            },
                           ),
                           TextFormField(
                             decoration: InputDecoration(
@@ -81,6 +94,16 @@ class _SignupState extends State<Signup> {
                                   //style your hint if needed
                                 )
                             ),
+                            onChanged: (con_pass){
+                              setState(() {
+                                conf_password = con_pass;
+                              });
+                            },
+                          ),
+                          Center(
+                            child: Text(error,style: TextStyle(
+                              color: Colors.redAccent
+                            ),),
                           ),
                           Container(
                             decoration: BoxDecoration(
@@ -98,7 +121,21 @@ class _SignupState extends State<Signup> {
                               color: Colors.transparent,
                               child: InkWell(
                                 onTap: (){
-                                  Navigator.pop(context);
+                                  setState(() {
+
+                                    if(email != "" && password !=""){
+                                      if(password == conf_password){
+                                        createAccount(email, password);
+                                        Navigator.pop(context);
+                                      }else{
+                                        error = "password not match";
+                                      }
+                                    }else{
+                                      error = "Enter input correctly";
+                                    }
+
+                                  });
+
                                 },
                                 customBorder: StadiumBorder(),
                                 splashColor: Colors.white54,

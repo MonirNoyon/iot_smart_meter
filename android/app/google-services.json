@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "82257561349",
+    "project_id": "iot-meter-98a03",
+    "storage_bucket": "iot-meter-98a03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82257561349:android:4bc6b906f42a3190f2996c",
+        "android_client_info": {
+          "package_name": "com.example.iot_meter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "82257561349-vr3nkq8q0hfa92un1dvlku2l0279geh3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEIggD78Urz3f1hahUcSzlkzbgqIr7Neg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "82257561349-vr3nkq8q0hfa92un1dvlku2l0279geh3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

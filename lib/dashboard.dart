@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iot_meter/auth/authentication.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -14,10 +15,6 @@ class _DashboardState extends State<Dashboard> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(215, 209, 209, 100),
       appBar: AppBar(
-        leading: Icon(
-          Icons.drag_indicator_rounded,
-          color: Colors.black54,
-        ),
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
@@ -42,6 +39,30 @@ class _DashboardState extends State<Dashboard> {
             ),
           )
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              onTap: (){
+                Navigator.pop(context);
+              },
+              title: Text("Dashboard"),
+            ),
+            ListTile(
+              onTap: (){
+                Navigator.pushNamed(context, "/test");
+              },
+              title: Text("test"),
+            ),
+            ListTile(
+              onTap: (){
+                logOut(context);
+              },
+              title: Text("Log out"),
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
@@ -234,7 +255,6 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
                 Container(
-
                   width: size.width * 0.9,
                   child: Card(
                     child: Column(
